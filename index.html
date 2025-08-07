@@ -1,322 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CyberTamimTech</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - CyberTamimTech</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========================================================================
+           Global & Theme Variables
+           ======================================================================== */
+        :root {
+            --primary-color: #4f46e5;
+            --bg-color: #f3f4f6;
+            --surface-color: #ffffff;
+            --text-color: #1f2937;
+            --text-secondary: #6b7280;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
 
-  <!-- Meta Tags for SEO & Social Sharing -->
-  <meta property="og:title" content="CyberTamimTech - Abid Al Hasan Tamim"/>
-  <meta property="og:description" content="Web Developer | Ethical Hacker | Learner"/>
-  <meta property="og:image" content="https://via.placeholder.com/150.png?text=Profile"/>
-  <meta property="og:url" content="https://yourdomain.vercel.app"/>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
 
-  <!-- AOS Animation CSS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+        /* ========================================================================
+           Login Page Styles
+           ======================================================================== */
+        .login-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-  <style>
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    body {
-      background-color: #f0f2f5;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    body.dark {
-      background-color: #18191a;
-      color: #e4e6eb;
-    }
-    header {
-      background-color: #1877f2;
-      color: white;
-      padding: 15px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      position: relative;
-    }
-    /* Dark Mode Button */
-    #darkToggle {
-      position: absolute;
-      right: 15px;
-      top: 15px;
-      background: white;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 16px;
-      color: #1877f2;
-      transition: background 0.3s;
-    }
-    #darkToggle:hover {
-      background: #e0e0e0;
-    }
-    .cover {
-      width: 100%;
-      height: 180px;
-      background: url('https://via.placeholder.com/900x180.png?text=Your+Cover+Photo') center/cover no-repeat;
-      transition: background-image 0.3s;
-    }
-    .profile {
-      display: flex;
-      justify-content: center;
-      margin-top: -60px;
-    }
-    .profile img {
-      border-radius: 50%;
-      border: 5px solid white;
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      transition: border-color 0.3s;
-    }
-    body.dark .profile img {
-      border-color: #333;
-    }
-    .info {
-      text-align: center;
-      margin: 10px 0 20px;
-    }
-    .info h2 {
-      color: #1877f2;
-      transition: color 0.3s;
-    }
-    body.dark .info h2 {
-      color: #59a4f2;
-    }
-    .info p {
-      color: #444;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-    body.dark .info p {
-      color: #ccc;
-    }
-    .typing-text {
-      font-size: 18px;
-      font-weight: 600;
-      color: #444;
-      margin-top: 6px;
-      height: 24px;
-      transition: color 0.3s;
-    }
-    body.dark .typing-text {
-      color: #ddd;
-    }
-    .links {
-      text-align: center;
-      margin: 15px 0 30px;
-    }
-    .links a {
-      color: #1877f2;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-    body.dark .links a {
-      color: #59a4f2;
-    }
-    section {
-      padding: 0 20px 40px;
-      max-width: 700px;
-      margin: auto;
-    }
-    .section-title {
-      font-size: 22px;
-      color: #1877f2;
-      margin-bottom: 15px;
-      border-bottom: 3px solid #1877f2;
-      display: inline-block;
-      transition: color 0.3s, border-color 0.3s;
-    }
-    body.dark .section-title {
-      color: #59a4f2;
-      border-color: #59a4f2;
-    }
-    .content-box {
-      background-color: white;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 25px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      transition: background-color 0.3s, box-shadow 0.3s;
-    }
-    body.dark .content-box {
-      background-color: #242526;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.5);
-    }
-    .termux { color: darkgreen; font-weight: 600;}
-    .esp { color: darkred; font-weight: 600;}
-    .apk { color: #ff9800; font-weight: 600;}
-    .tools { color: darkblue; font-weight: 600;}
-    /* Skills Bar */
-    .skill {
-      margin-bottom: 15px;
-    }
-    .skill-label {
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .skill-bar {
-      background: #ddd;
-      border-radius: 12px;
-      overflow: hidden;
-      height: 22px;
-    }
-    .skill-progress {
-      height: 22px;
-      background-color: #1877f2;
-      text-align: right;
-      padding-right: 10px;
-      color: white;
-      font-weight: 600;
-      line-height: 22px;
-      transition: width 1s ease-in-out;
-    }
-    /* Download CV Button */
-    .cv-btn {
-      display: block;
-      width: max-content;
-      margin: 20px auto;
-      background-color: #1877f2;
-      color: white;
-      padding: 12px 28px;
-      border-radius: 25px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-    .cv-btn:hover {
-      background-color: #0f5acb;
-    }
-    /* Live Clock */
-    #clock {
-      text-align: center;
-      font-weight: 600;
-      font-size: 16px;
-      margin-bottom: 25px;
-      color: #1877f2;
-      transition: color 0.3s;
-    }
-    body.dark #clock {
-      color: #59a4f2;
-    }
-    /* Comments Section */
-    .comments {
-      font-size: 15px;
-      line-height: 1.5;
-    }
-    .comment {
-      margin-bottom: 15px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #ccc;
-    }
-    body.dark .comment {
-      border-color: #444;
-    }
-    .comment strong {
-      color: #1877f2;
-    }
-    /* File Inputs for Cover & Profile */
-    .upload-section {
-      max-width: 700px;
-      margin: 20px auto;
-      text-align: center;
-    }
-    .upload-section input {
-      margin: 10px 15px;
-      cursor: pointer;
-    }
-    /* Responsive */
-    @media(max-width: 480px) {
-      .profile img {
-        width: 100px;
-        height: 100px;
-      }
-      header {
-        font-size: 20px;
-        padding: 12px;
-      }
-      .section-title {
-        font-size: 18px;
-      }
-    }
-  </style>
+        .login-container {
+            background-color: var(--surface-color);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .login-container h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #4338ca;
+            transform: translateY(-2px);
+        }
+
+        #login-error {
+            color: #ef4444;
+            margin-top: 15px;
+            display: none; /* Initially hidden */
+        }
+        
+        /* ========================================================================
+           Dashboard Page Styles
+           ======================================================================== */
+        .dashboard-page {
+            display: none; /* Initially hidden */
+        }
+        
+        .dashboard-header {
+            background-color: var(--surface-color);
+            padding: 20px 40px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+        
+        .dashboard-header h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .logout-btn {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background-color: #dc2626;
+        }
+
+        .dashboard-content {
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .card h2 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .save-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .save-btn:hover {
+            background-color: #4338ca;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    CyberTamimTech
-    <button id="darkToggle" title="Toggle Dark Mode">🌓</button>
-  </header>
-
-  <div class="cover"></div>
-
-  <div class="profile">
-    <img src="https://via.placeholder.com/150.png?text=Profile" alt="Profile Photo" id="profileImg">
-  </div>
-
-  <div class="info">
-    <h2>Abid Al Hasan Tamim</h2>
-    <p>Web Developer | Ethical Hacker | Learner</p>
-    <div class="typing-text" id="type-text"></div>
-  </div>
-
-  <div class="links">
-    <a href="https://www.facebook.com/share/1CDw59GfdF/" target="_blank" rel="noopener">Facebook</a>
-    <a href="mailto:cyberexpertbhh@gmail.com">Email</a>
-  </div>
-
-  <div class="upload-section">
-    <label>
-      Upload Cover Photo:
-      <input type="file" accept="image/*" id="coverUpload" />
-    </label>
-    <label>
-      Upload Profile Photo:
-      <input type="file" accept="image/*" id="profileUpload" />
-    </label>
-  </div>
-
-  <section>
-    <div id="clock"></div>
-
-    <div class="content-box" data-aos="fade-up">
-      <div class="section-title">Tools</div>
-      <p class="tools">✔️ NID Checker, BLE Spammer, Fake Liker, NAD Pro</p>
-    </div>
-
-    <div class="content-box" data-aos="fade-up" data-aos-delay="100">
-      <div class="section-title">APK Links</div>
-      <p class="apk">✔️ BL Offer – 1GB Free | BLE Spammer by Tamim</p>
-    </div>
-
-    <div class="content-box" data-aos="fade-up" data-aos-delay="200">
-      <div class="section-title">Termux Guide</div>
-      <p class="termux">✔️ DDoS Tools, Phishing Server, Python Scripts</p>
-    </div>
-
-    <div class="content-box" data-aos="fade-up" data-aos-delay="300">
-      <div class="section-title">ESP8266 Projects</div>
-      <p class="esp">✔️ Captive Portal, WiFi Jammer, Rubber Ducky</p>
-    </div>
-
-    <div class="content-box" data-aos="fade-up" data-aos-delay="400">
-      <div class="section-title">My Skills</div>
-      <div class="skill">
-        <div class="skill-label">HTML</div>
-        <div class="skill-bar">
-          <div class="skill-progress" style="width: 90%;">90%</div>
+    <div id="loginPage" class="login-page">
+        <div class="login-container">
+            <h1>Admin Login</h1>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="login-btn">Log In</button>
+                <p id="login-error">Invalid username or password.</p>
+            </form>
         </div>
-      </div>
-      <div class="skill">
-        <div class="skill-label">CSS</div>
-        <div class="skill-bar">
-          <div class="skill-progress" style="width: 85%;">85%</div>
+    </div>
+    
+    <div id="dashboardPage" class="dashboard-page">
+        <div class="dashboard-header">
+            <h1>Admin Dashboard</h1>
+            <button id="logoutBtn" class="logout-btn">Log Out</button>
         </div>
-      </div>
-      <div class="skill">
-        <div class="skill-label">JavaScript</div>
-        <
+
+        <div class="dashboard-content">
+            <div class="card">
+                <h2>Personal Information</h2>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" value="Abid Al Hasan Tamim">
+                </div>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" value="Web Developer | Ethical Hacker | Learner">
+                </div>
+                <button class="save-btn">Save Changes</button>
+            </div>
+
+            <div class="card">
+                <h2>Skills</h2>
+                <div class="form-group">
+                    <label for="html-skill">HTML (%)</label>
+                    <input type="number" id="html-skill" value="90">
+                </div>
+                <div class="form-group">
+                    <label for="css-skill">CSS (%)</label>
+                    <input type="number" id="css-skill" value="85">
+                </div>
+                <button class="save-btn">Update Skills</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loginPage = document.getElementById('loginPage');
+        const dashboardPage = document.getElementById('dashboardPage');
+        const loginForm = document.getElementById('loginForm');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const loginError = document.getElementById('login-error');
+
+        // Hardcoded credentials for this demo. NOT SECURE for real websites.
+        const correctUsername = "admin";
+        const correctPassword = "password";
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent form from submitting normally
+
+            const usernameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+
+            if (usernameInput === correctUsername && passwordInput === correctPassword) {
+                // Successful login
+                loginPage.style.display = 'none';
+                dashboardPage.style.display = 'block';
+                loginError.style.display = 'none'; // Hide any previous error
+            } else {
+                // Failed login
+                loginError.style.display = 'block';
+            }
+        });
+
+        logoutBtn.addEventListener('click', () => {
+            // Log out
+            dashboardPage.style.display = 'none';
+            loginPage.style.display = 'flex';
+            loginForm.reset(); // Clear the form fields
+        });
+    </script>
+
+</body>
+  </html>
