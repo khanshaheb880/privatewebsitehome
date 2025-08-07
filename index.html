@@ -1,201 +1,322 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abid Al Hasan Tamim – Story Portal</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberTamimTech</title>
+
+  <!-- Meta Tags for SEO & Social Sharing -->
+  <meta property="og:title" content="CyberTamimTech - Abid Al Hasan Tamim"/>
+  <meta property="og:description" content="Web Developer | Ethical Hacker | Learner"/>
+  <meta property="og:image" content="https://via.placeholder.com/150.png?text=Profile"/>
+  <meta property="og:url" content="https://yourdomain.vercel.app"/>
+
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
   <style>
-    body {
-      margin: 0;
-      padding: 0;
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
       font-family: 'Segoe UI', sans-serif;
-      background: #f4fdf4;
-      color: #222;
+    }
+    body {
+      background-color: #f0f2f5;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark {
+      background-color: #18191a;
+      color: #e4e6eb;
     }
     header {
-      background: #2e7d32;
+      background-color: #1877f2;
       color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-weight: bold;
-      font-size: 1.5rem;
-      display: flex;
-      align-items: center;
-    }
-    .logo span {
-      background: white;
-      color: #2e7d32;
-      padding: 4px 8px;
-      margin-right: 8px;
-      border-radius: 4px;
-    }
-    nav a {
-      color: white;
-      margin-left: 1rem;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .hero {
-      background: linear-gradient(120deg, #a5d6a7, #f4fdf4);
-      padding: 3rem 2rem;
+      padding: 15px;
       text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      position: relative;
     }
-    .hero h1 {
-      font-size: 2.5rem;
-      animation: typewriter 4s steps(40, end) 1s 1 normal both;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 2px solid green;
-      display: inline-block;
-    }
-    @keyframes typewriter {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 2rem;
-    }
-    .card {
+    /* Dark Mode Button */
+    #darkToggle {
+      position: absolute;
+      right: 15px;
+      top: 15px;
       background: white;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 128, 0, 0.1);
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
-    textarea, input {
-      width: 100%;
-      padding: 0.8rem;
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      font-family: inherit;
-    }
-    button {
-      padding: 0.6rem 1.2rem;
-      background: #2e7d32;
-      color: white;
       border: none;
-      border-radius: 4px;
+      padding: 5px 10px;
+      border-radius: 20px;
       cursor: pointer;
-      font-weight: bold;
+      font-size: 16px;
+      color: #1877f2;
+      transition: background 0.3s;
     }
-    .about p {
-      line-height: 1.6;
+    #darkToggle:hover {
+      background: #e0e0e0;
     }
-    footer {
-      background: #e8f5e9;
+    .cover {
+      width: 100%;
+      height: 180px;
+      background: url('https://via.placeholder.com/900x180.png?text=Your+Cover+Photo') center/cover no-repeat;
+      transition: background-image 0.3s;
+    }
+    .profile {
+      display: flex;
+      justify-content: center;
+      margin-top: -60px;
+    }
+    .profile img {
+      border-radius: 50%;
+      border: 5px solid white;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      transition: border-color 0.3s;
+    }
+    body.dark .profile img {
+      border-color: #333;
+    }
+    .info {
       text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      margin-top: 2rem;
+      margin: 10px 0 20px;
+    }
+    .info h2 {
+      color: #1877f2;
+      transition: color 0.3s;
+    }
+    body.dark .info h2 {
+      color: #59a4f2;
+    }
+    .info p {
+      color: #444;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    body.dark .info p {
+      color: #ccc;
+    }
+    .typing-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: #444;
+      margin-top: 6px;
+      height: 24px;
+      transition: color 0.3s;
+    }
+    body.dark .typing-text {
+      color: #ddd;
+    }
+    .links {
+      text-align: center;
+      margin: 15px 0 30px;
+    }
+    .links a {
+      color: #1877f2;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    body.dark .links a {
+      color: #59a4f2;
+    }
+    section {
+      padding: 0 20px 40px;
+      max-width: 700px;
+      margin: auto;
+    }
+    .section-title {
+      font-size: 22px;
+      color: #1877f2;
+      margin-bottom: 15px;
+      border-bottom: 3px solid #1877f2;
+      display: inline-block;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    body.dark .section-title {
+      color: #59a4f2;
+      border-color: #59a4f2;
+    }
+    .content-box {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    body.dark .content-box {
+      background-color: #242526;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+    .termux { color: darkgreen; font-weight: 600;}
+    .esp { color: darkred; font-weight: 600;}
+    .apk { color: #ff9800; font-weight: 600;}
+    .tools { color: darkblue; font-weight: 600;}
+    /* Skills Bar */
+    .skill {
+      margin-bottom: 15px;
+    }
+    .skill-label {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .skill-bar {
+      background: #ddd;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 22px;
+    }
+    .skill-progress {
+      height: 22px;
+      background-color: #1877f2;
+      text-align: right;
+      padding-right: 10px;
+      color: white;
+      font-weight: 600;
+      line-height: 22px;
+      transition: width 1s ease-in-out;
+    }
+    /* Download CV Button */
+    .cv-btn {
+      display: block;
+      width: max-content;
+      margin: 20px auto;
+      background-color: #1877f2;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .cv-btn:hover {
+      background-color: #0f5acb;
+    }
+    /* Live Clock */
+    #clock {
+      text-align: center;
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 25px;
+      color: #1877f2;
+      transition: color 0.3s;
+    }
+    body.dark #clock {
+      color: #59a4f2;
+    }
+    /* Comments Section */
+    .comments {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .comment {
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    body.dark .comment {
+      border-color: #444;
+    }
+    .comment strong {
+      color: #1877f2;
+    }
+    /* File Inputs for Cover & Profile */
+    .upload-section {
+      max-width: 700px;
+      margin: 20px auto;
+      text-align: center;
+    }
+    .upload-section input {
+      margin: 10px 15px;
+      cursor: pointer;
+    }
+    /* Responsive */
+    @media(max-width: 480px) {
+      .profile img {
+        width: 100px;
+        height: 100px;
+      }
+      header {
+        font-size: 20px;
+        padding: 12px;
+      }
+      .section-title {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo"><span>CR</span> Tamim</div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#story">Stories</a>
-      <a href="#login">Login</a>
-    </nav>
-  </header>  <section class="hero">
-    <h1>Inspiring Stories. Real People. Powered by Tamim.</h1>
-  </section>  <section id="about" class="container card about">
-    <h2>About Me</h2>
-    <p><strong>Full Name:</strong> Abid Al Hasan Tamim</p>
-    <p><strong>Location:</strong> Nokla, Sherpur, Dhaka, Bangladesh</p>
-    <p><strong>Profession:</strong> Web Developer</p>
-    <p><strong>Goal:</strong> To become a Professional Web Developer</p>
-    <p><strong>Interest:</strong> Gaining new knowledge</p>
-    <p><strong>Email:</strong> cyberexpertbhh@gmail.com</p>
-    <p>
-      <a href="https://www.facebook.com/share/1CDw59GfdF/" target="_blank">Facebook</a>
-    </p>
-  </section>  <section id="story" class="container card">
-    <h2>Post a Story</h2>
-    <input type="text" id="title" placeholder="Story Title">
-    <textarea id="content" rows="5" placeholder="Write your story..."></textarea>
-    <button onclick="postStory()">Post Story</button>
-  </section>  <section class="container">
-    <h2>All Stories</h2>
-    <div id="storyList"></div>
-  </section>  <section id="login" class="container card">
-    <h2>Admin Login</h2>
-    <input type="text" id="adminUser" placeholder="Username">
-    <input type="password" id="adminPass" placeholder="Password">
-    <button onclick="adminLogin()">Login</button>
-    <p id="adminStatus"></p>
-  </section>  <footer>
-    © 2025 Abid Al Hasan Tamim. All rights reserved.
-  </footer>  <script>
-    const adminUsername = "tamim";
-    const adminPassword = "1234";
+    CyberTamimTech
+    <button id="darkToggle" title="Toggle Dark Mode">🌓</button>
+  </header>
 
-    function postStory() {
-      const title = document.getElementById("title").value;
-      const content = document.getElementById("content").value;
-      if (!title || !content) return alert("Please fill all fields");
+  <div class="cover"></div>
 
-      const story = { title, content, time: new Date().toLocaleString() };
-      let stories = JSON.parse(localStorage.getItem("stories") || "[]");
-      stories.unshift(story);
-      localStorage.setItem("stories", JSON.stringify(stories));
-      document.getElementById("title").value = "";
-      document.getElementById("content").value = "";
-      loadStories();
-    }
+  <div class="profile">
+    <img src="https://via.placeholder.com/150.png?text=Profile" alt="Profile Photo" id="profileImg">
+  </div>
 
-    function loadStories() {
-      let stories = JSON.parse(localStorage.getItem("stories") || "[]");
-      const storyList = document.getElementById("storyList");
-      storyList.innerHTML = "";
-      stories.forEach((story, i) => {
-        storyList.innerHTML += `
-          <div class="card">
-            <h3>${story.title}</h3>
-            <p>${story.content}</p>
-            <small>${story.time}</small>
-            <div id="adminControls-${i}"></div>
-          </div>
-        `;
-      });
-    }
+  <div class="info">
+    <h2>Abid Al Hasan Tamim</h2>
+    <p>Web Developer | Ethical Hacker | Learner</p>
+    <div class="typing-text" id="type-text"></div>
+  </div>
 
-    function adminLogin() {
-      const user = document.getElementById("adminUser").value;
-      const pass = document.getElementById("adminPass").value;
-      if (user === adminUsername && pass === adminPassword) {
-        document.getElementById("adminStatus").innerText = "Admin logged in";
-        enableAdminControls();
-      } else {
-        document.getElementById("adminStatus").innerText = "Invalid credentials";
-      }
-    }
+  <div class="links">
+    <a href="https://www.facebook.com/share/1CDw59GfdF/" target="_blank" rel="noopener">Facebook</a>
+    <a href="mailto:cyberexpertbhh@gmail.com">Email</a>
+  </div>
 
-    function enableAdminControls() {
-      let stories = JSON.parse(localStorage.getItem("stories") || "[]");
-      stories.forEach((story, i) => {
-        const div = document.getElementById(`adminControls-${i}`);
-        if (div) {
-          div.innerHTML = `<br><button onclick="deleteStory(${i})">Delete</button>`;
-        }
-      });
-    }
+  <div class="upload-section">
+    <label>
+      Upload Cover Photo:
+      <input type="file" accept="image/*" id="coverUpload" />
+    </label>
+    <label>
+      Upload Profile Photo:
+      <input type="file" accept="image/*" id="profileUpload" />
+    </label>
+  </div>
 
-    function deleteStory(index) {
-      let stories = JSON.parse(localStorage.getItem("stories") || "[]");
-      stories.splice(index, 1);
-      localStorage.setItem("stories", JSON.stringify(stories));
-      loadStories();
-    }
+  <section>
+    <div id="clock"></div>
 
-    window.onload = loadStories;
-  </script></body>
-</html>
+    <div class="content-box" data-aos="fade-up">
+      <div class="section-title">Tools</div>
+      <p class="tools">✔️ NID Checker, BLE Spammer, Fake Liker, NAD Pro</p>
+    </div>
+
+    <div class="content-box" data-aos="fade-up" data-aos-delay="100">
+      <div class="section-title">APK Links</div>
+      <p class="apk">✔️ BL Offer – 1GB Free | BLE Spammer by Tamim</p>
+    </div>
+
+    <div class="content-box" data-aos="fade-up" data-aos-delay="200">
+      <div class="section-title">Termux Guide</div>
+      <p class="termux">✔️ DDoS Tools, Phishing Server, Python Scripts</p>
+    </div>
+
+    <div class="content-box" data-aos="fade-up" data-aos-delay="300">
+      <div class="section-title">ESP8266 Projects</div>
+      <p class="esp">✔️ Captive Portal, WiFi Jammer, Rubber Ducky</p>
+    </div>
+
+    <div class="content-box" data-aos="fade-up" data-aos-delay="400">
+      <div class="section-title">My Skills</div>
+      <div class="skill">
+        <div class="skill-label">HTML</div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 90%;">90%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <div class="skill-label">CSS</div>
+        <div class="skill-bar">
+          <div class="skill-progress" style="width: 85%;">85%</div>
+        </div>
+      </div>
+      <div class="skill">
+        <div class="skill-label">JavaScript</div>
+        <
