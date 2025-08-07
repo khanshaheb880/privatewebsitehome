@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abid Al Hasan Tamim – Story Portal</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4fdf4;
+      color: #222;
+    }
+    header {
+      background: #2e7d32;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+    .logo span {
+      background: white;
+      color: #2e7d32;
+      padding: 4px 8px;
+      margin-right: 8px;
+      border-radius: 4px;
+    }
+    nav a {
+      color: white;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .hero {
+      background: linear-gradient(120deg, #a5d6a7, #f4fdf4);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      animation: typewriter 4s steps(40, end) 1s 1 normal both;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid green;
+      display: inline-block;
+    }
+    @keyframes typewriter {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 128, 0, 0.1);
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    textarea, input {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+    }
+    button {
+      padding: 0.6rem 1.2rem;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .about p {
+      line-height: 1.6;
+    }
+    footer {
+      background: #e8f5e9;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><span>CR</span> Tamim</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#story">Stories</a>
+      <a href="#login">Login</a>
+    </nav>
+  </header>  <section class="hero">
+    <h1>Inspiring Stories. Real People. Powered by Tamim.</h1>
+  </section>  <section id="about" class="container card about">
+    <h2>About Me</h2>
+    <p><strong>Full Name:</strong> Abid Al Hasan Tamim</p>
+    <p><strong>Location:</strong> Nokla, Sherpur, Dhaka, Bangladesh</p>
+    <p><strong>Profession:</strong> Web Developer</p>
+    <p><strong>Goal:</strong> To become a Professional Web Developer</p>
+    <p><strong>Interest:</strong> Gaining new knowledge</p>
+    <p><strong>Email:</strong> cyberexpertbhh@gmail.com</p>
+    <p>
+      <a href="https://www.facebook.com/share/1CDw59GfdF/" target="_blank">Facebook</a>
+    </p>
+  </section>  <section id="story" class="container card">
+    <h2>Post a Story</h2>
+    <input type="text" id="title" placeholder="Story Title">
+    <textarea id="content" rows="5" placeholder="Write your story..."></textarea>
+    <button onclick="postStory()">Post Story</button>
+  </section>  <section class="container">
+    <h2>All Stories</h2>
+    <div id="storyList"></div>
+  </section>  <section id="login" class="container card">
+    <h2>Admin Login</h2>
+    <input type="text" id="adminUser" placeholder="Username">
+    <input type="password" id="adminPass" placeholder="Password">
+    <button onclick="adminLogin()">Login</button>
+    <p id="adminStatus"></p>
+  </section>  <footer>
+    © 2025 Abid Al Hasan Tamim. All rights reserved.
+  </footer>  <script>
+    const adminUsername = "tamim";
+    const adminPassword = "1234";
+
+    function postStory() {
+      const title = document.getElementById("title").value;
+      const content = document.getElementById("content").value;
+      if (!title || !content) return alert("Please fill all fields");
+
+      const story = { title, content, time: new Date().toLocaleString() };
+      let stories = JSON.parse(localStorage.getItem("stories") || "[]");
+      stories.unshift(story);
+      localStorage.setItem("stories", JSON.stringify(stories));
+      document.getElementById("title").value = "";
+      document.getElementById("content").value = "";
+      loadStories();
+    }
+
+    function loadStories() {
+      let stories = JSON.parse(localStorage.getItem("stories") || "[]");
+      const storyList = document.getElementById("storyList");
+      storyList.innerHTML = "";
+      stories.forEach((story, i) => {
+        storyList.innerHTML += `
+          <div class="card">
+            <h3>${story.title}</h3>
+            <p>${story.content}</p>
+            <small>${story.time}</small>
+            <div id="adminControls-${i}"></div>
+          </div>
+        `;
+      });
+    }
+
+    function adminLogin() {
+      const user = document.getElementById("adminUser").value;
+      const pass = document.getElementById("adminPass").value;
+      if (user === adminUsername && pass === adminPassword) {
+        document.getElementById("adminStatus").innerText = "Admin logged in";
+        enableAdminControls();
+      } else {
+        document.getElementById("adminStatus").innerText = "Invalid credentials";
+      }
+    }
+
+    function enableAdminControls() {
+      let stories = JSON.parse(localStorage.getItem("stories") || "[]");
+      stories.forEach((story, i) => {
+        const div = document.getElementById(`adminControls-${i}`);
+        if (div) {
+          div.innerHTML = `<br><button onclick="deleteStory(${i})">Delete</button>`;
+        }
+      });
+    }
+
+    function deleteStory(index) {
+      let stories = JSON.parse(localStorage.getItem("stories") || "[]");
+      stories.splice(index, 1);
+      localStorage.setItem("stories", JSON.stringify(stories));
+      loadStories();
+    }
+
+    window.onload = loadStories;
+  </script></body>
+</html>
