@@ -133,4 +133,140 @@
     window.onload = loadUsers;
   </script>
 </body>
+  </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Facebook Monetization Status</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      margin: 0; padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #aaa;
+      padding: 20px;
+    }
+    .signup {
+      text-align: center;
+    }
+    .signup h2 {
+      color: #1877f2;
+    }
+    .users-list {
+      margin-top: 30px;
+    }
+    .users-list h3 {
+      margin-bottom: 10px;
+      color: #444;
+    }
+    .user {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .user img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .user-info {
+      flex-grow: 1;
+    }
+    .user-info strong {
+      display: block;
+    }
+    .status {
+      color: green;
+      font-size: 14px;
+    }
+    .refresh-btn {
+      background: #1877f2;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="signup">
+      <h2>Check Your Monetization Status</h2>
+      <input type="text" placeholder="Enter Facebook Profile Link" style="width:100%; padding:10px; margin-top:10px;" />
+      <button class="refresh-btn" onclick="loadUsers()">Sign Up</button>
+    </div>
+
+    <div class="users-list">
+      <h3>Recent Monetized Users</h3>
+      <div id="userContainer"></div>
+    </div>
+  </div>
+
+  <script>
+    const allUsers = [
+      { name: "John Malik", img: "https://i.pravatar.cc/150?img=12" },
+      { name: "Mehedi Hassan", img: "https://i.pravatar.cc/150?img=14" },
+      { name: "Maria Sultana", img: "https://i.pravatar.cc/150?img=9" },
+      { name: "Tanvir Ahmed", img: "https://i.pravatar.cc/150?img=4" },
+      { name: "Rina Roy", img: "https://i.pravatar.cc/150?img=8" },
+      { name: "Shakil Rahman", img: "https://i.pravatar.cc/150?img=11" },
+      { name: "Shamima Begum", img: "https://i.pravatar.cc/150?img=3" },
+      { name: "Sajid Khan", img: "https://i.pravatar.cc/150?img=5" },
+      { name: "Nusrat Zahan", img: "https://i.pravatar.cc/150?img=13" },
+      { name: "Tariq Jamil", img: "https://i.pravatar.cc/150?img=7" },
+      { name: "Arif Mahmud", img: "https://i.pravatar.cc/150?img=6" },
+      { name: "Afsana Akter", img: "https://i.pravatar.cc/150?img=10" },
+      { name: "Sohail Rana", img: "https://i.pravatar.cc/150?img=15" },
+      { name: "Kamal Hossain", img: "https://i.pravatar.cc/150?img=16" },
+      { name: "Nasrin Akter", img: "https://i.pravatar.cc/150?img=17" },
+      { name: "Zahidul Islam", img: "https://i.pravatar.cc/150?img=18" },
+      { name: "Jannat Ferdous", img: "https://i.pravatar.cc/150?img=19" },
+      { name: "Rafiul Hasan", img: "https://i.pravatar.cc/150?img=20" },
+      { name: "Lubna Chowdhury", img: "https://i.pravatar.cc/150?img=21" },
+      { name: "Fahim Reza", img: "https://i.pravatar.cc/150?img=22" },
+      { name: "Sumaiya Islam", img: "https://i.pravatar.cc/150?img=23" },
+      { name: "Tania Akter", img: "https://i.pravatar.cc/150?img=24" }
+    ];
+
+    let startIndex = 0;
+
+    function loadUsers() {
+      const container = document.getElementById("userContainer");
+      container.innerHTML = "";
+
+      let endIndex = startIndex + 6;
+      const usersToShow = allUsers.slice(startIndex, endIndex);
+
+      usersToShow.forEach(user => {
+        const div = document.createElement("div");
+        div.className = "user";
+        div.innerHTML = `
+          <img src="${user.img}" alt="${user.name}">
+          <div class="user-info">
+            <strong>${user.name}</strong>
+            <span class="status">Monetization Approved</span>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+
+      startIndex = endIndex >= allUsers.length ? 0 : endIndex;
+    }
+
+    // Initial Load
+    window.onload = loadUsers;
+  </script>
+</body>
 </html>
