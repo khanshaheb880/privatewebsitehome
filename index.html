@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>C.R.CYBER EXPERT</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:#000;
+    color:#fff;
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .card{
+    width:100%;
+    max-width:420px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:16px;
+    padding:26px;
+    text-align:center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* Animated logo with subtle glow */
+  .logo-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .logo-badge{
+    width:56px;
+    height:56px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg, rgba(0,255,234,0.06), rgba(0,255,234,0.02));
+    box-shadow: 0 6px 18px rgba(0,255,234,0.06), inset 0 -6px 14px rgba(0,0,0,0.5);
+    animation: spinY 3.6s ease-in-out infinite;
+  }
+  .logo-badge span{
+    color:#00ffea;
+    font-weight:800;
+    font-size:14px;
+    letter-spacing:0.6px;
+  }
+  .logo-text{
+    font-weight:900;
+    color:#00ffea;
+    font-size:18px;
+    letter-spacing:1px;
+    text-shadow: 0 6px 24px rgba(0,255,234,0.06);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-8px)}
+  }
+  @keyframes spinY {
+    0% { transform: rotateY(0deg) translateY(0); }
+    50% { transform: rotateY(180deg) translateY(-6px); }
+    100% { transform: rotateY(360deg) translateY(0); }
+  }
+
+  .welcome{
+    font-size:15px;
+    line-height:1.5;
+    margin-bottom:18px;
+    color:#fff;
+  }
+
+  .visit-now{
+    display:inline-block;
+    margin:6px 0 12px;
+    text-decoration:none;
+    background:#00ffea;
+    color:#000;
+    padding:12px 22px;
+    border-radius:12px;
+    font-weight:800;
+    letter-spacing:0.3px;
+    box-shadow: 0 8px 30px rgba(0,255,234,0.06);
+  }
+
+  .btn-row{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:8px;
+  }
+
+  .tg-btn{
+    flex:1 1 40%;
+    min-width:78px;
+    text-decoration:none;
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.06);
+    color:#fff;
+    padding:10px 12px;
+    border-radius:10px;
+    font-weight:700;
+    transition:transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .tg-btn:hover{
+    transform:translateY(-6px);
+    background:#00ffea;
+    color:#000;
+    border-color:transparent;
+  }
+
+  .foot{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:12px;
+    font-size:12px;
+    color:rgba(255,255,255,0.45);
+  }
+
+  @media (max-width:420px){
+    .card{padding:18px}
+    .logo-text{font-size:16px}
+    .logo-badge{width:48px;height:48px}
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo-wrap">
+      <div class="logo-badge"><span>C.R</span></div>
+      <div class="logo-text">C.R.CYBER EXPERT</div>
+    </div>
+
+    <div class="welcome">
+      আসসালামু আলাইকুম<br>
+      Pixellab Pro version পেতে Visit আমাদের টেলিগ্রাম বট!
+    </div>
+
+    <!-- Main Visit button (opens bot chat) -->
+    <a class="visit-now" href="https://t.me/pixellab_premium_update_bot" target="_blank" rel="noreferrer">Visit Now</a>
+
+    <hr style="opacity:.05;margin:16px 0">
+
+    <!-- Four buttons ১ ২ ৩ ৪ pointing to bot with start params -->
+    <div class="btn-row">
+      <a class="tg-btn" href="https://t.me/pixellab_premium_update_bot?start=1" target="_blank" rel="noreferrer">১</a>
+      <a class="tg-btn" href="https://t.me/pixellab_premium_update_bot?start=2" target="_blank" rel="noreferrer">২</a>
+      <a class="tg-btn" href="https://t.me/pixellab_premium_update_bot?start=3" target="_blank" rel="noreferrer">৩</a>
+      <a class="tg-btn" href="https://t.me/pixellab_premium_update_bot?start=4" target="_blank" rel="noreferrer">৪</a>
+    </div>
+
+    <div class="foot">made by Tamim</div>
+  </div>
+</body>
+  </html>
